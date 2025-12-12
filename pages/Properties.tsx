@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Search, MapPin, Filter, Grid, List } from 'lucide-react';
 import { properties } from '../services/mockData';
 
@@ -97,7 +97,7 @@ const Properties = () => {
                     </div>
                   </div>
 
-                  <Link to={`/properties/${property.id}`} className="mt-auto w-full bg-primary border border-gray-600 text-center py-3 text-white rounded hover:bg-accent hover:text-primary hover:border-accent transition-all font-semibold uppercase text-sm">
+                  <Link href={`/properties/${property.id}`} className="mt-auto w-full bg-primary border border-gray-600 text-center py-3 text-white rounded hover:bg-accent hover:text-primary hover:border-accent transition-all font-semibold uppercase text-sm">
                     View Property
                   </Link>
                 </div>

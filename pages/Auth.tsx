@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate auth
     setTimeout(() => {
-      navigate('/admin');
+      router.push('/admin');
     }, 1000);
   };
 

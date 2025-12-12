@@ -1,11 +1,14 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { MapPin, Bed, Bath, Move, Check, Phone, Mail, User, ArrowLeft } from 'lucide-react';
 import { properties } from '../services/mockData';
 
 const PropertyDetail = () => {
-  const { id } = useParams();
-  const property = properties.find(p => p.id === Number(id));
+  const router = useRouter();
+  const { id } = router.query;
+  const propertyId = Array.isArray(id) ? id[0] : id;
+  const property = properties.find(p => p.id === Number(propertyId));
 
   if (!property) return <div className="text-white text-center pt-32">Property not found</div>;
 
@@ -17,7 +20,7 @@ const PropertyDetail = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-12">
           <div className="container mx-auto">
-            <Link to="/properties" className="inline-flex items-center text-gray-300 hover:text-accent mb-4 transition-colors">
+            <Link href="/properties" className="inline-flex items-center text-gray-300 hover:text-accent mb-4 transition-colors">
               <ArrowLeft size={20} className="mr-2" /> Back to listings
             </Link>
             <div className="flex flex-col md:flex-row justify-between items-end">

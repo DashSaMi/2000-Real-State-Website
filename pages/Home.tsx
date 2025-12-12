@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { 
   Search, Home as HomeIcon, Key, DollarSign, Building, ArrowRight, Star, 
   Map as MapIcon, Calculator, TrendingUp, Video, MessageSquare, CheckCircle, 
@@ -106,7 +107,7 @@ const AIRecommendation = () => {
                   <h4 className="text-lg text-white font-serif">{result.title}</h4>
                   <p className="text-accent font-bold text-xl my-2">${result.price.toLocaleString()}</p>
                   <p className="text-gray-400 text-sm">{result.location}</p>
-                  <Link to={`/properties/${result.id}`} className="mt-4 inline-block bg-white text-primary px-4 py-2 rounded text-sm font-bold">View Details</Link>
+                  <Link href={`/properties/${result.id}`} className="mt-4 inline-block bg-white text-primary px-4 py-2 rounded text-sm font-bold">View Details</Link>
                 </div>
               </div>
             </motion.div>
@@ -482,7 +483,7 @@ const ChatWidget = () => {
 // --- Main Home Component ---
 
 const Home = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const featuredProperties = properties.filter(p => p.isFeatured).slice(0, 3);
 
   const categories = [
@@ -545,7 +546,7 @@ const Home = () => {
                 <option>$5M+</option>
               </select>
               <button 
-                onClick={() => navigate('/properties')}
+                onClick={() => router.push('/properties')}
                 className="bg-accent text-primary font-bold py-3 rounded hover:bg-white hover:text-accent transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <Search size={20} /> Search
@@ -580,7 +581,7 @@ const Home = () => {
               <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Popular Listings</h2>
               <div className="h-1 w-20 bg-accent"></div>
             </div>
-            <Link to="/properties" className="text-accent hover:text-white flex items-center gap-2 transition-colors">View All <ArrowRight size={18}/></Link>
+            <Link href="/properties" className="text-accent hover:text-white flex items-center gap-2 transition-colors">View All <ArrowRight size={18}/></Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -603,7 +604,7 @@ const Home = () => {
                     <span>{property.bathrooms} Baths</span>
                     <span>{property.sqft.toLocaleString()} Sqft</span>
                   </div>
-                  <Link to={`/properties/${property.id}`} className="block mt-6 text-center w-full border border-gray-600 py-2 text-white hover:bg-accent hover:text-primary hover:border-accent transition-colors rounded-sm text-sm uppercase font-semibold">
+                  <Link href={`/properties/${property.id}`} className="block mt-6 text-center w-full border border-gray-600 py-2 text-white hover:bg-accent hover:text-primary hover:border-accent transition-colors rounded-sm text-sm uppercase font-semibold">
                     View Details
                   </Link>
                 </div>
@@ -679,7 +680,7 @@ const Home = () => {
           <h2 className="text-4xl font-serif text-primary font-bold mb-6">Ready to find your dream property?</h2>
           <p className="text-primary/80 text-xl mb-8 max-w-2xl mx-auto">Contact our specialized agents today to schedule a viewing or discuss your investment.</p>
           <div className="flex justify-center gap-4">
-             <Link to="/contact" className="bg-primary text-white px-8 py-4 rounded font-bold hover:bg-white hover:text-primary transition-all shadow-xl">
+             <Link href="/contact" className="bg-primary text-white px-8 py-4 rounded font-bold hover:bg-white hover:text-primary transition-all shadow-xl">
                Book Consultation
              </Link>
              <button className="bg-white/20 text-primary border border-primary px-8 py-4 rounded font-bold hover:bg-primary hover:text-white transition-all">
